@@ -1464,6 +1464,7 @@ def drawBasicWeakness(group, x = 0, y = 0):
     notify("{} shuffles a random Basic Weakness into deck".format(me))
     me.deck.shuffle()
 
+
 def drawBasicWeaknessToHand(group, x = 0, y = 0):
     mute()
 
@@ -1481,6 +1482,21 @@ def drawBasicWeaknessToHand(group, x = 0, y = 0):
     card = bw_cards.top()
     card.moveTo(me.hand)
     notify("{} draws the Basic Weakness '{}' into their hand.".format(me, card))
+
+
+def createCard(group=None, x=0, y=0):
+	cardID, quantity = askCard()
+	cards = table.create(cardID, x, y, quantity, False)
+	try:
+		iterator = iter(cards)
+	except TypeError:
+		# not iterable
+		notify("{} created {}.".format(me, cards))
+	else:
+		# iterable	
+		for card in cards:
+			notify("{} created {}.".format(me, card))
+
 
 # def captureDeck(group):
 #   if len(group) == 0: return
