@@ -786,7 +786,8 @@ def advancePhase(group = None, x = 0, y = 0):
         notify("{} advances phase to Enemy Phase".format(me))
     elif newPhase == 4:
         notify("{} advances phase to Upkeep Phase".format(me))
-        doUpkeepPhase()
+        for player in getPlayers():
+            remoteCall(player, "doUpkeepPhase", [])
     
 def advanceTurn():
     newTurn = num(getGlobalVariable("activeTurn")) + 1
