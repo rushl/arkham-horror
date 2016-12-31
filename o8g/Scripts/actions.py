@@ -505,8 +505,7 @@ def createChaosBag(group, x=0, y=0):
         if c.owner == me and c.model == "faa82643-1dda-4af7-96ad-298bc2d5b2dd":
             c.moveToTable(x, y)
             return
-    bag = group.create("faa82643-1dda-4af7-96ad-298bc2d5b2dd", ChaosTokenX, ChaosTokenY, 1, False)
-    bag.highlight = me.color
+    group.create("faa82643-1dda-4af7-96ad-298bc2d5b2dd", ChaosTokenX, ChaosTokenY, 1, False)
 
 def flipCoin(group, x = 0, y = 0):
     mute()
