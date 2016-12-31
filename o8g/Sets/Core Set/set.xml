@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <set xmlns:noNamespaceSchemaLocation="CardSet.xsd" name="Core Set" id="0000f984-d06f-44cb-bf1c-d66a620acad8" gameId="a6d114c7-2e2a-4896-ad8c-0330605c90bf" gameVersion="1.0.0.0" version="1.0.0">
  <cards>
   <card id="25f013a5-4ca2-4a34-9d03-e11e8ed93aaf" name="Roland Banks" size="InvestigatorCard">
@@ -655,7 +655,7 @@
     <property name="Traits" value="Ally. Criminal."/>
     <property name="Text" value="You may take an additional action during your turn."/>
   </card>
-  <card id="96093bc3-dc11-4811-a21c-fcd0dba0d2f2" name="Cat Burgler">
+  <card id="96093bc3-dc11-4811-a21c-fcd0dba0d2f2" name="Cat Burglar">
     <property name="Quantity" value="1"/>
     <property name="Type" value="Asset"/>
     <property name="Class" value="Rogue"/>
@@ -989,7 +989,7 @@
     <property name="Quantity" value="1"/>
     <property name="Type" value="Event"/>
     <property name="Class" value="Survivor"/>
-    <property name="Level" value="4"/>
+    <property name="Level" value="3"/>
     <property name="Cost" value="2"/>
     <property name="Combat" value="1"/>
     <property name="Skill Icons" value="ήΰ"/>

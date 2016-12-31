@@ -390,7 +390,7 @@ def deckLoaded(args):
         notify("{} Takes control of the encounter deck".format(me))
         for p in shared.piles:
             if shared.piles[p].controller != me:
-                shared.piles[p].setController(me)
+                shared.piles[p].controller = me
         #rnd(1,2) # This causes OCTGN to sync the controller changes!
         update()
             
@@ -963,21 +963,6 @@ def flipcard(card, x = 0, y = 0):
 
     cardx, cardy = card.position
 
-    #WORKAROUND to Flip between different CardSizes on the back of a card (TEMP until OCTGN supports cardsize for Alternates)
-    if card.model == "d533f5ae-53fc-4bbb-96b9-d0f26364c387":
-        notify("{} flips '{}'.".format(me, card))
-        card.delete()
-        table.create('947bb975-8eb2-45a7-bc68-ea58a50190da', cardx, cardy, quantity = 1, persist = True)
-        return
-
-    if card.model == "947bb975-8eb2-45a7-bc68-ea58a50190da":
-        notify("{} flips '{}'.".format(me, card))
-        card.delete()
-        table.create('d533f5ae-53fc-4bbb-96b9-d0f26364c387', cardx, cardy, quantity = 1, persist = True)
-        return
-    #END Treachery of Rhudaur WORKAROUND
-
-
     #Card Alternate Flip
     if card.alternates is not None and "B" in card.alternates:
         if card.alternate == "B":
@@ -1483,6 +1468,13 @@ def drawBasicWeakness(group, x = 0, y = 0):
         
     bw_cards.shuffle()
     card = bw_cards.top()
+
+    return card
+
+def drawBasicWeaknessToDeck(group, x = 0, y = 0):
+    mute()
+
+    card = drawBasicWeakness(group, x, y)
     card.moveTo(me.deck)
     # do we notify players of what the basic weakness card that was shuffled in?
     notify("{} shuffles a random Basic Weakness into deck".format(me))
@@ -1490,20 +1482,7 @@ def drawBasicWeakness(group, x = 0, y = 0):
 
 
 def drawBasicWeaknessToHand(group, x = 0, y = 0):
-    mute()
-
-    if len(me.piles[BasicWeakness.PILE_NAME]) == 0:
-        bw = BasicWeakness(me)
-        bw.create_deck()
-
-    bw_cards = me.piles[BasicWeakness.PILE_NAME]
-    bw_cards_count = len(bw_cards)
-    if (bw_cards_count == 0):
-        notify("There are no Basic Weakness cards left!")
-        return
-        
-    bw_cards.shuffle()
-    card = bw_cards.top()
+    card = drawBasicWeakness(group, x, y)
     card.moveTo(me.hand)
     notify("{} draws the Basic Weakness '{}' into their hand.".format(me, card))
 
