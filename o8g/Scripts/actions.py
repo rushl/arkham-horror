@@ -59,7 +59,6 @@ def phasePassed(args):
     
     if newPhase > 4:
         newPhase = 1
-        me.setActive()
     
     if newPhase == 1:
         if turnNumber() != 1:
