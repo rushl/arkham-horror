@@ -1584,21 +1584,6 @@ def createCard(group=None, x=0, y=0):
 			notify("{} created {}.".format(me, card))
 
 
-
-def createCard(group=None, x=0, y=0):
-	cardID, quantity = askCard()
-	cards = table.create(cardID, x, y, quantity, False)
-	try:
-		iterator = iter(cards)
-	except TypeError:
-		# not iterable
-		notify("{} created {}.".format(me, cards))
-	else:
-		# iterable	
-		for card in cards:
-			notify("{} created {}.".format(me, card))
-
-
 def placeLongPath(group, x=0, y=0):
     pathCard = group.create("7f4029c8-1cee-406a-9913-9fbc6e341bed", x, y, 1, False)
     pathCard.sendToBack()
