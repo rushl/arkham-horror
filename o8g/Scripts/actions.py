@@ -68,8 +68,7 @@ def phasePassed(args):
         mute()
     elif newPhase == 4 and getGlobalVariable("allowUpkeepPhase") == "True":
         # Upkeep
-        for player in getPlayers():
-            remoteCall(player, "doUpkeepPhase", [False])
+        remoteCall(me, "doUpkeepPhase", [False])
         
         setGlobalVariable("allowUpkeepPhase", "False")
 
@@ -895,6 +894,8 @@ def doUpkeepPhase(setPhaseVar = True):
             addResource(card)
         elif card.Type == "Mini" and card.controller == me:
             card.markers[Action] = 0
+            if card.alternates is not None and "" in card.alternates:
+                card.alternate = ''
 
     shared.counters['Round'].value += 1
     clearHighlights()
